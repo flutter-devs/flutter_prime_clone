@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:prime_clone/resources/app_colors.dart';
 import 'package:prime_clone/resources/strings.dart';
+import 'package:prime_clone/utils/custom_widget.dart';
 import 'package:prime_clone/utils/device_size.dart';
 import 'package:prime_clone/utils/movie_name.dart';
 import 'package:prime_clone/view/detail_page.dart';
@@ -43,12 +44,8 @@ class _MoviesState extends State<Movies> with TickerProviderStateMixin{
     MovieName("Marjorie Prime",  "assets/maj_movies.jpg",
     ),
     MovieName("Expandables 2", "assets/exp_movies.jpeg",
-
     ),
-
   ];
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +57,9 @@ class _MoviesState extends State<Movies> with TickerProviderStateMixin{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _topPart(),
-              _watchTv(),
-              _moviesHindi(),
-              _latestMovies(),
-             // _thrillerMovie(),
-
+              CustomWidget(child: moviesList(context),name: Strings.watchNextMovies,),
+              CustomWidget(child: moviesList(context),name: Strings.hindiMovies,),
+              CustomWidget(child: moviesList(context),name: Strings.latestMovies,),
             ],
           ),
         ),
@@ -97,80 +92,7 @@ class _MoviesState extends State<Movies> with TickerProviderStateMixin{
       ),
     );
   }
-  Widget _watchTv(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.watchNextMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _moviesHindi(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.hindiMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _thrillerMovie(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.thrillerMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _latestMovies(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.latestMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-
-
-
-  Widget list(BuildContext context){
+  Widget moviesList(BuildContext context){
     return ListView.builder(
       itemCount: listOfWatch.length,
       scrollDirection: Axis.horizontal,

@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:prime_clone/resources/app_colors.dart';
 import 'package:prime_clone/resources/strings.dart';
+import 'package:prime_clone/utils/custom_widget.dart';
 import 'package:prime_clone/utils/device_size.dart';
 import 'package:prime_clone/utils/movie_name.dart';
 import 'package:prime_clone/view/detail_page.dart';
@@ -58,10 +59,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _topPart(),
-              _watchTv(),
-              _moviesHindi(),
-              _language(),
-              //_amazonSeries(),
+              CustomWidget(child: homeList(context),name: Strings.watchTv,),
+              CustomWidget(child: homeList(context),name: Strings.hindiMovies,),
+              CustomWidget(child: homeList(context),name: Strings.watchLanguage,),
 
 
             ],
@@ -96,77 +96,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
       ),
     );
   }
-  Widget _watchTv(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.watchTv,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _moviesHindi(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.hindiMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _language(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.watchLanguage,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/7,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _amazonSeries(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.amazonOriginalSeries,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(
-                height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget list(BuildContext context){
+  Widget homeList(BuildContext context){
     return ListView.builder(
       itemCount: listOfWatch.length,
       scrollDirection: Axis.horizontal,

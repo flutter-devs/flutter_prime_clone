@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:prime_clone/resources/app_colors.dart';
 import 'package:prime_clone/resources/strings.dart';
+import 'package:prime_clone/utils/custom_widget.dart';
 import 'package:prime_clone/utils/device_size.dart';
 import 'package:prime_clone/utils/movie_name.dart';
 import 'package:prime_clone/view/detail_page.dart';
@@ -62,12 +63,10 @@ class _FindKidsState extends State<FindKids> with TickerProviderStateMixin{
               children: <Widget>[
                 _appBar(),
                 _topPart(),
-                _watchTv(),
-                _kidsMovie(),
-                _kidsTv(),
-                _comedyMovies(),
-
-
+                CustomWidget(child: kidsList(context),name: Strings.watchNextKids,),
+                CustomWidget(child: kidsList(context),name: Strings.kidsFamilyMovies,),
+                CustomWidget(child: kidsList(context),name: Strings.kidsFamilyTv,),
+                CustomWidget(child: kidsList(context),name: Strings.comedyMovies,),
               ],
             ),
           ),
@@ -111,78 +110,7 @@ class _FindKidsState extends State<FindKids> with TickerProviderStateMixin{
       ],
     );
   }
-  Widget _watchTv(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.watchNextKids,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _kidsMovie(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.kidsFamilyMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _kidsTv(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.kidsFamilyTv,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _comedyMovies(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.comedyMovies,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-
-
-  Widget list(BuildContext context){
+  Widget kidsList(BuildContext context){
     return ListView.builder(
       itemCount: listOfWatch.length,
       scrollDirection: Axis.horizontal,

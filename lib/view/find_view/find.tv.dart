@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:prime_clone/resources/app_colors.dart';
 import 'package:prime_clone/resources/strings.dart';
+import 'package:prime_clone/utils/custom_widget.dart';
 import 'package:prime_clone/utils/device_size.dart';
 import 'package:prime_clone/utils/movie_name.dart';
 import 'package:prime_clone/view/detail_page.dart';
@@ -60,13 +61,10 @@ class _FindTvState extends State<FindTv> with TickerProviderStateMixin{
               children: <Widget>[
                 _appBar(),
                 _topPart(),
-                _watchTv(),
-                _moviesHindi(),
-                _language(),
-                _amazonSeries(),
-
-
-
+                CustomWidget(child: tvShowsList(context),name: Strings.watchNextTv,),
+                CustomWidget(child: tvShowsList(context),name: Strings.amazonOriginalSeries,),
+                CustomWidget(child: tvShowsList(context),name: Strings.thrillerTv,),
+                CustomWidget(child: tvShowsList(context),name: Strings.tvShows,),
               ],
             ),
           ),
@@ -110,79 +108,7 @@ class _FindTvState extends State<FindTv> with TickerProviderStateMixin{
       ],
     );
   }
-  Widget _watchTv(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.watchNextTv,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _moviesHindi(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.amazonOriginalSeries,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _language(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.thrillerTv,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _amazonSeries(){
-    return Padding(
-      padding: const EdgeInsets.only(left:16,top:16),
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(Strings.tvShows,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16),),
-            SizedBox(height: 10,),
-            Container(height: DeviceSize.height(context)/8,width:double.maxFinite,
-                child: list(context)),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-
-
-
-  Widget list(BuildContext context){
+  Widget tvShowsList(BuildContext context){
     return ListView.builder(
       itemCount: listOfWatch.length,
       scrollDirection: Axis.horizontal,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prime_clone/resources/app_colors.dart';
 import 'package:prime_clone/resources/strings.dart';
 import 'package:prime_clone/routing/routes.dart';
+import 'package:prime_clone/utils/custom_textfield.dart';
 import 'package:prime_clone/utils/device_size.dart';
 import 'package:prime_clone/view/find_view/genre_language.dart';
 
@@ -48,34 +49,11 @@ class _FindState extends State<Find> {
 
 
   Widget _search(){
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 30,vertical: 30
-      ),
-      child: TextField(
-        style: TextStyle(color: Colors.white),
-        cursorColor: Colors.white,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10),
-          fillColor: AppColors.findSearchTextField.withOpacity(0.4),
-          filled: true,
-          hintText: Strings.searchBy,
-          hintStyle: TextStyle(
-            color: AppColors.findSearchText,
-          ),
-          prefixIcon: Icon(Icons.search,color: AppColors.findSearch,),
-          suffixIcon: Icon(Icons.mic,color: AppColors.findSearch,),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.splashColor1,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColors.splashColor1,
-            ),
-          ),
-        ),
+    return CustomTextField(
+         hintText: Strings.searchBy,
+      prefixIcon: Icon(Icons.search,color: AppColors.findSearch,),
+      suffixIcon:  IconButton(icon: Icon(Icons.mic,color: AppColors.findSearch,),
+
       ),
     );
   }

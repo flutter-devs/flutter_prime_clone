@@ -2,6 +2,7 @@
 A new Flutter project.
 
 # Demo
+<img height="400px" src="https://user-images.githubusercontent.com/59611415/106008610-7b716500-60dd-11eb-838f-636389eb593b.gif">
 
 
 # Android Screen
